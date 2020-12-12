@@ -30,14 +30,14 @@ Edit Notes:
 #include "Simplify.h"
 #include "Grammar.h"
 
-#define EXPR_FILE "Leon.txt"
+#define EXPR_FILE "Expr.txt"
 
-Vertex* getTreeFromMemory(bool table[])
+Vertex* getTreeFromMemory(bool table[], char const* fileName)
 {
     char* tran = nullptr;
     int fileSize = 0, nStrings = 0;
     tran = (char*)translateFileIntoRam(
-        EXPR_FILE,
+        fileName,
         &fileSize,
         &nStrings);
     if (tran == nullptr)
@@ -72,7 +72,7 @@ char nextSymbol(bool table[256], int i = -1)
 }
 
 
-int main(void)
+int main(int n, char const** param)
 {
     setlocale(LC_ALL, "RUS");
     srand(time(nullptr));
@@ -83,7 +83,7 @@ int main(void)
     FILE* latexFile = fopen(TEX_FILE, "w");
     makeHeader(latexFile);
 
-    auto tree = getTreeFromMemory(table);
+    auto tree = getTreeFromMemory(table, (n > 1) ? param[1] : EXPR_FILE);
     putToLatex(tree, latexFile);
     auto nVariables = countChars(table);
 
@@ -128,7 +128,7 @@ int main(void)
         simplify(derivative, latexFile);
         hereWeGet(latexFile);
     }
-    fprintf(latexFile, "Коллеги, давайте сделаем перерыв.\\newline \\begin{center}*перерыв*\\end{center}");
+    fprintf(latexFile, "Коллеги, давайте сделаем перерыв, во время перерыва рекомендую заглянуть на \newline https://github.com/JulesIMF/Wolfram-Alpha.\\newline \\begin{center}*перерыв*\\end{center}");
     
     endLatex(latexFile);
 

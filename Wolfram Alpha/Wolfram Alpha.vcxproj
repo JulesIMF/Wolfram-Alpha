@@ -169,7 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="expr.txt" />
-    <Text Include="Leon.txt" />
+    <Text Include="Expr.txt" />
     <Text Include="NewExpr.txt" />
     <Text Include="Str.txt" />
     <Text Include="Test1.txt" />
