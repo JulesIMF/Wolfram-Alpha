@@ -1,0 +1,1 @@
+sin(exp(x)+cos(y))*log(x)+4/sin(x)
